@@ -1,1 +1,42 @@
-<p>posts-list works!</p>
+<div class="card">
+        <div class="card-header">
+            Listar Postagens
+        </div>
+        <div class="card-body">
+            <form>
+
+                <input type="text" id="search" name="search" class="form-control" [(ngModel)]="title" 
+                placeholder="Pesquisar pelo título"/>
+                <button (click)="searchTitle()" class="btn btn-primary">Pesquisar</button>
+
+                <h4>Listagem de Postagens</h4>
+
+                <ul class="list-group">
+                    <li class="list-group-item"
+                    *ngFor="let post of posts; let i = index"
+                    [class.active]="i == currentIndex"
+                    (click)="setActivePost(post, i)">{{ post.title }}</li>
+                </ul>
+                <button (click)="removeAllPosts()" class="btn btn-primary">Remover Todas</button>
+
+                <div>
+                    <label>Descrição:</label>
+                    {{ currentPost.description }}
+                </div>
+
+                <div>
+                    <label>Situação:</label>
+                    {{ currentPost.published ? "Publicado" : "Pendente" }}
+                </div>
+
+                <a class="" routerLink="/posts/{{ currentPost.id }}">Editar</a>
+
+                <div *ngIf="!currentPost">
+                    <p>Por favor, selecione uma postagem.</p>
+                </div>
+
+            </form>
+        </div>
+
+    
+</div>
