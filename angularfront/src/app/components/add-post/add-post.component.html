@@ -1,1 +1,28 @@
-<p>add-post works!</p>
+<div class="card">
+    <div *ngIf="!submitted">
+        <div class="card-header">
+            Adicionar
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" id="title" name="title" class="form-control" required [(ngModel)]="post.title" />
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Descrição</label>
+                    <input type="text" id="description" name="description" class="form-control" required [(ngModel)]="post.description">
+                </div>
+
+                <button (click)="savePost()" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="submitted">
+        <h4>Registro inserido com sucesso!</h4>
+        <button (click)="newPost()" class="btn btn-primary">Adicionar</button>
+    </div>
+    
+</div>

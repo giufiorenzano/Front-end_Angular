@@ -31,7 +31,7 @@ export class PostService {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 
-  deleteAll(id): Observable<any> {
+  deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
   }
 
