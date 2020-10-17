@@ -1,42 +1,48 @@
-<div class="card">
+<div class="list row">
+    <div class="card">
         <div class="card-header">
             Listar Postagens
         </div>
         <div class="card-body">
             <form>
-
-                <input type="text" id="search" name="search" class="form-control" [(ngModel)]="title" 
-                placeholder="Pesquisar pelo título"/>
-                <button (click)="searchTitle()" class="btn btn-primary">Pesquisar</button>
-
+                <div class="input-group mb-3">
+                    <input type="text" id="search" name="search" class="form-control"
+                        placeholder="Pesquisar pelo título" [(ngModel)]="title" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">
+                            Pesquisar
+                        </button>
+                    </div>
+                </div>
                 <h4>Listagem de Postagens</h4>
-
                 <ul class="list-group">
-                    <li class="list-group-item"
-                    *ngFor="let post of posts; let i = index"
-                    [class.active]="i == currentIndex"
-                    (click)="setActivePost(post, i)">{{ post.title }}</li>
+                    <li class="list-group-item" *ngFor="let post of posts; let i = index"
+                        [class.active]="i == currentIndex" (click)="setActivePost(post, i)">{{ post.title }}</li>
                 </ul>
-                <button (click)="removeAllPosts()" class="btn btn-primary">Remover Todas</button>
+                <button (click)="removeAllPosts()" class="btn btn-danger">Remover Todas</button>
 
                 <div>
-                    <label>Descrição:</label>
-                    {{ currentPost.description }}
+                    <div *ngIf="currentPost">
+                        <h4>Postagem</h4>
+                        <div>
+                            <label>Título:</label> {{ currentPost.title }}
+                        </div>
+                        <div>
+                            <label>Descrição:</label>
+                            {{ currentPost.description }}
+                        </div>
+                        <div>
+                            <label>Situação:</label>
+                            {{ currentPost.published ? "Publicada" : "Pendente"}}
+                        </div>
+                        <a class="btn btn-warning" routerLink="/posts/{{ currentPost.id }}">Editar</a>
+                    </div>
+                    <div *ngIf="!currentPost">
+                        <p>Por favor, selecione uma postagem.</p>
+                    </div>
                 </div>
-
-                <div>
-                    <label>Situação:</label>
-                    {{ currentPost.published ? "Publicado" : "Pendente" }}
-                </div>
-
-                <a class="" routerLink="/posts/{{ currentPost.id }}">Editar</a>
-
-                <div *ngIf="!currentPost">
-                    <p>Por favor, selecione uma postagem.</p>
-                </div>
-
             </form>
         </div>
 
-    
+    </div>
 </div>

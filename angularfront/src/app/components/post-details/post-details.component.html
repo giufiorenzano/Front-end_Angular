@@ -1,1 +1,36 @@
-<p>post-details works!</p>
+<div>
+    <div *ngIf="currentPost">
+        <h4>Postagem</h4>
+        <form>
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" 
+                name="title" [(ngModel)]="currentPost.title" />
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <input type="text" class="form-control" id="description" 
+                name="description" [(ngModel)]="currentPost.description" />
+            </div>
+
+            <div class="form-group">
+                <label><strong>Situação:</strong></label>
+                {{ currentPost.published ? "Publicada" : "Pendente"}}
+            </div>
+
+            <button *ngIf="!currentPost.published" class="btn btn-primary"
+            (click)="updatePublished(true)">Publicar</button>
+            <button *ngIf="currentPost.published" class="btn btn-primary" 
+            (click)="updatePublished(false)">Despublicar</button>
+
+            <button class="btn btn-danger" (click)="deletePost()">Excluir</button>
+            <button class="btn btn-warning" (click)="updatePost()">Atualizar</button>
+            <p>{{ message }}</p>
+        </form>
+
+        <div *ngIf="!currentPost">
+            <p>Não foi possível acessar esta postagem.</p>
+        </div>
+    </div>
+</div>
